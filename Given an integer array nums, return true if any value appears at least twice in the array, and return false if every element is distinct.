@@ -1,0 +1,45 @@
+
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Another Solution - Sorting
+
+Another simple solution is to sort the numbers first. Then, match consecutive numbers. If you find any pair having same value, return true.
+Code
+
+public boolean containsDuplicate(int[] nums) {
+   if (nums == null || nums.length == 0) return false;
+   
+   Arrays.sort(nums);
+   int l = nums.length;
+   for (int i=1; i<l; i++) {
+      if (nums[i-1] == nums[i]) {
+         return true;
+      }
+   }
+   return false;
+}
+
+Complexity
+
+Complexity for sorting is O(nlogn) Total complexity is also O(nlogn)
+Another Solution using Extra Memory - HashSet
+
+Lets utilize a HashSet. A HashSet is a data structure which contains all unique elements, and the complexity to search and adding an element is O(1)
+
+public boolean containsDuplicate_extraMemory(int[] nums) {
+   if (nums == null || nums.length == 0) return false;
+   
+   Set<Integer> set = new HashSet<>();
+   int l = nums.length;
+   for (int i=0; i<l; i++) {
+      if (set.contains(nums[i])) {
+         return true;
+      }
+      set.add(nums[i]);
+   }
+   return false;
+}
+
+Complexity
+
+Its O(n)
